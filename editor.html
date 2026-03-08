@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Editor - Richa Sharma</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <style>
+        .editor-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .input-title {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-family: var(--font-hindi), var(--font-main);
+            outline: none;
+            padding: 10px 0;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-title:focus {
+            border-bottom-color: var(--accent-neon);
+        }
+
+        /* Toolbar styles */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            padding: 10px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .toolbar button {
+            background: var(--bg-hover);
+            border: 1px solid transparent;
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .toolbar button:hover {
+            border-color: var(--accent-neon);
+            color: var(--accent-neon);
+        }
+
+        .toolbar select {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid transparent;
+            padding: 8px;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .toolbar select:focus {
+            border-color: var(--accent-neon);
+        }
+
+        /* The Content Area */
+        .content-editor {
+            min-height: 400px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            font-family: var(--font-hindi), var(--font-main);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #dcdcdc;
+            outline: none;
+        }
+
+        .content-editor:focus {
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 10px rgba(234, 255, 0, 0.1);
+        }
+
+        .content-editor p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content-editor img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: block;
+            border: 1px dashed var(--accent-neon);
+        }
+
+        #image-upload {
+            display: none;
+        }
+
+        /* Mobile Responsiveness for Editor */
+        @media (max-width: 768px) {
+            .editor-container {
+                padding: 1.2rem;
+            }
+
+            .editor-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .input-title {
+                font-size: 1.5rem;
+            }
+
+            .toolbar {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .toolbar button,
+            .toolbar select {
+                font-size: 0.9rem;
+                padding: 6px;
+            }
+
+            .content-editor {
+                min-height: 250px;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="glass-panel">
+        <div class="logo">
+            <h1 style="font-size: 1.5rem; font-family: var(--font-hindi), var(--font-main);"><a href="index.html"
+                    style="color: inherit; text-decoration: none;">ऋचा<span class="accent">एं</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><span class="neon-text-accent" style="font-weight: 600;">Admin Dashboard</span></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="neon-btn" style="border-color: #ff4a4a; color: #ff4a4a;"
+                onclick="logoutUser()">Logout</button>
+        </div>
+    </header>
+
+    <main class="animate-fade-in">
+        <div class="editor-container">
+            <div class="editor-header">
+                <h2 style="margin: 0; font-size: 1.5rem;">Draft New Story</h2>
+                <div style="display: flex; gap: 15px;">
+                    <button class="neon-btn" style="background: transparent;">Save Draft</button>
+                    <button class="neon-btn" style="background: var(--accent-neon); color: var(--bg-primary);"
+                        id="publishBtn">Publish</button>
+                </div>
+            </div>
+
+            <!-- Title Input -->
+            <input type="text" class="input-title" placeholder="कहानी का शीर्षक दर्ज करें (Enter Title)...">
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <input type="file" id="cover-upload" accept="image/*" style="display: none;">
+                <button class="neon-btn" id="coverUploadBtn" style="padding: 8px 15px; font-size: 0.85rem;"
+                    onclick="document.getElementById('cover-upload').click()">+ Upload Cover Image</button>
+
+                <select id="typeSelect"
+                    style="background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 4px; outline: none; flex-grow: 1; margin-left: 10px;">
+                    <option value="story">Publish as Story</option>
+                    <option value="article">Publish as Article</option>
+                    <option value="series">Publish as Series</option>
+                    <option value="comics">Publish as Comics</option>
+                    <option value="drama">Publish as Drama</option>
+                </select>
+            </div>
+
+            <!-- Editor Toolbar -->
+            <div class="toolbar">
+                <button onclick="format('bold')"><b>B</b></button>
+                <button onclick="format('italic')"><i>I</i></button>
+                <button onclick="format('underline')"><u>U</u></button>
+                |
+                <button onclick="format('justifyLeft')">Left</button>
+                <button onclick="format('justifyCenter')">Center</button>
+                |
+                <select onchange="format('formatBlock', this.value)">
+                    <option value="P">Paragraph</option>
+                    <option value="H2">Heading 2</option>
+                    <option value="H3">Heading 3</option>
+                </select>
+                |
+                <!-- Image Insertion inside Content -->
+                <button id="inlineImageBtn" style="color: var(--accent-neon); font-weight: bold;"
+                    onclick="document.getElementById('image-upload').click()">+ Insert Image</button>
+                <input type="file" id="image-upload" accept="image/*" onchange="insertImage(this)">
+            </div>
+
+            <!-- Rich Text Editable Area -->
+            <div class="content-editor" id="editor" contenteditable="true"
+                placeholder="Type your story here... (Hindi keyboard supported natively)"></div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Richa Sharma. Admin Interface.</p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Protect strict admin route
+        if (!isAdmin()) {
+            window.location.href = 'login.html';
+        }
+
+        let coverImageData = { url: null, key: null };
+
+        // Simple wysiwyg commands
+        function format(command, value) {
+            document.execCommand(command, false, value);
+            document.getElementById('editor').focus();
+        }
+
+        // Handle Cover Image Upload
+        document.getElementById('cover-upload').addEventListener('change', async function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const uploadBtn = document.getElementById('coverUploadBtn');
+            const originalText = uploadBtn.innerText;
+            uploadBtn.innerText = 'Uploading...';
+            uploadBtn.disabled = true;
+
+            try {
+                const result = await uploadImage(file);
+                coverImageData = { url: result.url, key: result.key };
+                uploadBtn.innerText = 'Cover Image Uploaded!';
+                uploadBtn.style.background = 'var(--text-secondary)';
+                uploadBtn.style.color = '#000';
+                uploadBtn.style.borderColor = 'transparent';
+            } catch (err) {
+                if (err.message && err.message.includes('session has expired')) {
+                    alert(err.message);
+                    window.location.href = 'login.html';
+                    return;
+                }
+                alert('Cover upload failed: ' + err.message);
+                uploadBtn.innerText = originalText;
+                uploadBtn.disabled = false;
+            }
+        });
+
+        // Handle Inline Image insertion
+        async function insertImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const originalBtnText = document.getElementById('inlineImageBtn').innerText;
+            document.getElementById('inlineImageBtn').innerText = 'Uploading...';
+            document.getElementById('inlineImageBtn').style.opacity = '0.5';
+
+            try {
+                const result = await uploadImage(file);
+                // Insert the uploaded URL into the editor
+                document.getElementById('editor').focus();
+                const imgHtml = `<img src="${result.url}" alt="Story Image"><br>`;
+                document.execCommand('insertHTML', false, imgHtml);
+            } catch (err) {
+                if (err.message && err.message.includes('session has expired')) {
+                    alert(err.message);
+                    window.location.href = 'login.html';
+                    return;
+                }
+                alert('Inline image upload failed: ' + err.message);
+            } finally {
+                document.getElementById('inlineImageBtn').innerText = '+ Insert Image';
+                document.getElementById('inlineImageBtn').style.opacity = '1';
+                // Reset input
+                input.value = '';
+            }
+        }
+
+        // Publish Action
+        document.getElementById('publishBtn').addEventListener('click', async () => {
+            const publishBtn = document.getElementById('publishBtn');
+            const title = document.querySelector('.input-title').value.trim();
+            const typeSelect = document.getElementById('typeSelect');
+            const type = typeSelect.value;
+            const content = document.getElementById('editor').innerHTML.trim();
+
+            if (!title) {
+                alert("Please enter a title before publishing.");
+                return;
+            }
+            if (!content || content === "") {
+                alert("Please write some content for your story/article.");
+                return;
+            }
+
+            // Create a plain text excerpt (first 150 chars)
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = content;
+            const excerpt = tempDiv.textContent.substring(0, 150) + '...';
+
+            publishBtn.innerText = 'Publishing...';
+            publishBtn.disabled = true;
+
+            try {
+                const storyData = {
+                    title: title,
+                    category: type, // Using category field to store type 'story' or 'article'
+                    content: content,
+                    excerpt: excerpt,
+                    cover_image_url: coverImageData.url,
+                    cover_image_key: coverImageData.key
+                };
+
+                await createStory(storyData);
+
+                alert(`"${title}" published successfully as ${type}!`);
+                window.location.href = 'index.html';
+            } catch (err) {
+                if (err.message && err.message.includes('session has expired')) {
+                    alert(err.message);
+                    window.location.href = 'login.html';
+                    return;
+                }
+                alert('Publish failed: ' + (err.message || 'Unknown error'));
+                publishBtn.innerText = 'Publish';
+                publishBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

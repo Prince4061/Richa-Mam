@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richa Sharma - Stories & Blogs</title>
+
+    <!-- Google Fonts - Multiple Font Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 
+      Fonts loaded:
+      - Outfit: Main UI font
+      - Noto Sans Devanagari: Hindi base font
+      - Hind: Clean Hindi font
+      - Tiro Devanagari: Elegant Hindi/Sanskrit font
+      - Baloo 2: Fun bold Hindi font
+      - Bangers: Comic title font (English)
+      - Comic Neue: Comic body font
+      - Lora: Elegant story/drama font
+      - Rajdhani: Bold series font
+      - Merriweather: Article/blog font
+    -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari&family=Baloo+2:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Rajdhani:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <header class="glass-panel">
+        <div class="logo">
+            <div class="logo-circle"></div>
+            <h1 style="font-family: var(--font-hindi), var(--font-main);">ऋचा<span class="accent">एं</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#recent">Stories</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#series">Series</a></li>
+                <li><a href="#comics">Comics</a></li>
+                <li><a href="#drama">Drama</a></li>
+                <!-- Hidden by default, shown when Admin is logged in -->
+                <li id="adminNav" style="display: none;"><a href="editor.html" class="neon-text-accent">Write Story</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="neon-btn" onclick="window.location.href='login.html'">Admin Login</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero"
+            style="padding: 4rem 0; border-bottom: 1px solid var(--border-color); margin-bottom: 3rem;">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h2 class="neon-text" style="font-size: 3rem; margin-bottom: 1rem;">विचार, किस्से और हकीकत</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">ऋचा
+                        शर्मा के
+                        नज़रों से शब्दों की इस खूबसूरत दुनिया को महसूस करें। हिंदी और अंग्रेज़ी की दिलकश कहानियों में
+                        खुद को खो
+                        जाने दें।</p>
+                </div>
+                <div class="hero-image-col animate-fade-in delay-1">
+                    <img src="https://i.ibb.co/C3gtf7hj/Screenshot-2026-03-06-224638.jpg" alt="Richa Sharma"
+                        class="hero-profile-img">
+                    <h3 class="neon-text" style="margin: 0; font-size: 1.8rem; letter-spacing: 1px;">Richa
+                        <span class="neon-text-accent">Sharma</span>
+                    </h3>
+                    <div class="hero-socials">
+                        <a href="#" target="_blank" class="social-btn">
+                            Instagram
+                        </a>
+                        <a href="#" target="_blank" class="social-btn">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Stories Section -->
+        <section id="recent">
+            <h2 class="section-title">Latest Stories</h2>
+
+            <div class="story-grid" id="recentStoriesGrid">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">
+                    Loading stories...
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" style="margin-top: 4rem;">
+            <h2 class="section-title">Latest Articles</h2>
+
+            <div class="story-grid" id="recentArticlesGrid">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">
+                    Loading articles...
+                </div>
+            </div>
+        </section>
+
+        <section id="series" style="margin-top: 4rem;">
+            <h2 class="section-title">Latest Series</h2>
+
+            <div class="story-grid" id="recentSeriesGrid">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">
+                    Loading series...
+                </div>
+            </div>
+        </section>
+
+        <section id="comics" style="margin-top: 4rem;">
+            <h2 class="section-title">Latest Comics</h2>
+
+            <div class="story-grid" id="recentComicsGrid">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">
+                    Loading comics...
+                </div>
+            </div>
+        </section>
+
+        <section id="drama" style="margin-top: 4rem;">
+            <h2 class="section-title">Latest Drama</h2>
+
+            <div class="story-grid" id="recentDramaGrid">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">
+                    Loading drama...
+                </div>
+            </div>
+        </section>
+
+        <!-- Historical Stories Section (Just decorative for layout purposes right now) -->
+        <section id="history" style="margin-top: 5rem;">
+            <h2 class="section-title">From the Archives</h2>
+            <div class="story-grid" style="opacity: 0.8;">
+                <!-- Example Old Story Card -->
+                <article class="story-card animate-fade-in" onclick="window.location.href='story.html?id=4'">
+                    <div class="story-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1476842634003-7dcca8f832de?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="story-content">
+                        <span class="story-tag" style="background-color: #555;">Classic</span>
+                        <h3 class="story-title">The First Drafts</h3>
+                        <p class="story-excerpt">Looking back at where it all began, the messy scribbles that turned
+                            into complete novels.</p>
+                        <div class="story-meta">
+                            <span>Dec 15, 2025</span>
+                            <span>4 min read</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Richa Sharma. All rights reserved.</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">Designed for storytelling.</p>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div class="glass-panel animate-fade-in"
+            style="width: 100%; max-width: 400px; padding: 2rem; position: relative;">
+            <button onclick="closeAuthModal()"
+                style="position: absolute; right: 15px; top: 15px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+
+            <div id="authError"
+                style="color: #ff4a4a; font-size: 0.85rem; display: none; margin-bottom: 1rem; text-align: center; border: 1px solid rgba(255, 74, 74, 0.3); padding: 8px; border-radius: 4px; background: rgba(255, 74, 74, 0.1);">
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginFormContent" onsubmit="handleUserAuth(event, true)"
+                style="display: flex; flex-direction: column; gap: 1rem;">
+                <h2 class="neon-text-accent" style="margin-top: 0; font-size: 1.8rem; text-align: center;">Welcome Back
+                </h2>
+                <input type="email" placeholder="Email Address" required
+                    style="padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; outline: none; font-family: var(--font-main);">
+                <input type="password" placeholder="Password" required
+                    style="padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; outline: none; font-family: var(--font-main);">
+                <button type="submit" class="neon-btn" style="width: 100%;">Login</button>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">
+                    Don't have an account? <a href="#" onclick="toggleAuthMode(); return false;"
+                        style="color: var(--accent-neon); text-decoration: none;">Sign up</a>
+                </p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupFormContent" onsubmit="handleUserAuth(event, false)"
+                style="display: none; flex-direction: column; gap: 1rem;">
+                <h2 class="neon-text-accent" style="margin-top: 0; font-size: 1.8rem; text-align: center;">Join Us</h2>
+                <input type="text" placeholder="Full Name" required
+                    style="padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; outline: none; font-family: var(--font-main);">
+                <input type="email" placeholder="Email Address" required
+                    style="padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; outline: none; font-family: var(--font-main);">
+                <input type="password" placeholder="Password (min 6 chars)" required
+                    style="padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; outline: none; font-family: var(--font-main);">
+                <button type="submit" class="neon-btn" style="width: 100%;">Sign Up</button>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">
+                    Already have an account? <a href="#" onclick="toggleAuthMode(); return false;"
+                        style="color: var(--accent-neon); text-decoration: none;">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const storyGrid = document.getElementById('recentStoriesGrid');
+            const articleGrid = document.getElementById('recentArticlesGrid');
+            const seriesGrid = document.getElementById('recentSeriesGrid');
+            const comicsGrid = document.getElementById('recentComicsGrid');
+            const dramaGrid = document.getElementById('recentDramaGrid');
+
+            try {
+                // Fetch Stories and Articles in parallel
+                const [stories, articles, series, comics, drama] = await Promise.all([
+                    getStories('story'),
+                    getStories('article'),
+                    getStories('series'),
+                    getStories('comics'),
+                    getStories('drama')
+                ]);
+
+                renderGrid(storyGrid, stories, 'No stories published yet.');
+                renderGrid(articleGrid, articles, 'No articles published yet.');
+                if (seriesGrid) renderGrid(seriesGrid, series, 'No series published yet.');
+                if (comicsGrid) renderGrid(comicsGrid, comics, 'No comics published yet.');
+                if (dramaGrid) renderGrid(dramaGrid, drama, 'No drama published yet.');
+
+            } catch (err) {
+                console.error("Failed to fetch content", err);
+                const errorHtml = `<div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: #ff4a4a;">Failed to load content. ${err.message}</div>`;
+                if (storyGrid) storyGrid.innerHTML = errorHtml;
+                if (articleGrid) articleGrid.innerHTML = errorHtml;
+                if (seriesGrid) seriesGrid.innerHTML = errorHtml;
+                if (comicsGrid) comicsGrid.innerHTML = errorHtml;
+                if (dramaGrid) dramaGrid.innerHTML = errorHtml;
+            }
+        });
+
+        // Global function for deleting stories from the list
+        window.handleDelete = async function (event, id) {
+            event.stopPropagation(); // Prevent the card click from triggering
+            if (confirm('Are you sure you want to delete this permanently?')) {
+                try {
+                    await deleteStory(id);
+                    alert('Deleted successfully!');
+                    window.location.reload(); // Refresh the grid
+                } catch (err) {
+                    alert('Delete failed: ' + err.message);
+                }
+            }
+        };
+
+        function renderGrid(grid, items, emptyMessage) {
+            if (!items || items.length === 0) {
+                grid.innerHTML = `<div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--text-secondary);">${emptyMessage}</div>`;
+                return;
+            }
+
+            grid.innerHTML = '';
+            items.forEach((item, idx) => {
+                const delay = (idx % 3) + 1; // 1, 2, or 3
+                const dateObj = new Date(item.created_at);
+                const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                // Default placeholder image if none uploaded
+                const imgUrl = item.cover_image_url || 'https://images.unsplash.com/photo-1455390582262-044cdead2708?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+
+                const card = document.createElement('article');
+                card.className = `story-card animate-fade-in delay-${delay}`;
+                card.setAttribute('data-category', item.category || 'story');
+                card.onclick = () => window.location.href = `story.html?id=${item.id}`;
+
+                const deleteBtnHtml = isAdmin() ? `<button onclick="handleDelete(event, '${item.id}')" style="background: rgba(255, 74, 74, 0.1); border: 1px solid #ff4a4a; color: #ff4a4a; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.background='#ff4a4a'; this.style.color='#fff';" onmouseout="this.style.background='rgba(255, 74, 74, 0.1)'; this.style.color='#ff4a4a';">Delete</button>` : '';
+
+                card.innerHTML = `
+                    <div class="story-image" style="background-image: url('${imgUrl}'); background-position: center; border-bottom: 1px solid var(--border-color);"></div>
+                    <div class="story-content">
+                        <span class="story-tag">${item.category ? item.category.charAt(0).toUpperCase() + item.category.slice(1) : 'Story'}</span>
+                        <h3 class="story-title">${item.title}</h3>
+                        <p class="story-excerpt">${item.excerpt || ''}</p>
+                        <div class="story-meta">
+                            <span>${formattedDate} • ${item.profiles?.name || 'Admin'}</span>
+                            ${deleteBtnHtml}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+
+</html>

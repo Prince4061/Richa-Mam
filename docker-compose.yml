@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  richa-web:
+    image: nginx:alpine
+    container_name: richa_sharma_website
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
