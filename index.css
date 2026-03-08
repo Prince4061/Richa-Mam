@@ -1,0 +1,708 @@
+:root {
+  /* Core Theme Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #121212;
+  --bg-card: #1a1a1a;
+
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+
+  --accent-neon: #eaff00;
+  /* Neon Yellow */
+  --accent-glow: rgba(234, 255, 0, 0.4);
+
+  --border-color: #333333;
+  --bg-hover: #222222;
+
+  /* ===== Typography - Multiple Font Styles ===== */
+  --font-main: 'Outfit', sans-serif;
+
+  /* Hindi Fonts - तीन options */
+  --font-hindi: 'Hind', 'Noto Sans Devanagari', sans-serif;
+  /* Clean Hindi */
+  --font-hindi-elegant: 'Tiro Devanagari', 'Noto Sans Devanagari', serif;
+  /* Elegant/Sanskrit style */
+  --font-hindi-bold: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
+  /* Fun bold Hindi */
+  --font-hindi-base: 'Noto Sans Devanagari', sans-serif;
+  /* Base fallback */
+
+  /* Category Fonts */
+  --font-comic: 'Bangers', 'Comic Neue', cursive;
+  /* Comics titles */
+  --font-comic-body: 'Comic Neue', cursive;
+  /* Comics body text */
+  --font-story: 'Lora', 'Georgia', serif;
+  /* Stories & Drama */
+  --font-series: 'Rajdhani', 'Outfit', sans-serif;
+  /* Series */
+  --font-article: 'Merriweather', 'Georgia', serif;
+  /* Articles/Blog */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism & Neon Utilities */
+.glass-panel {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.neon-text {
+  color: var(--text-primary);
+  text-shadow: 0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow);
+}
+
+.neon-text-accent {
+  color: var(--accent-neon);
+  text-shadow: 0 0 8px var(--accent-glow), 0 0 15px var(--accent-glow);
+}
+
+.neon-border {
+  border: 1px solid var(--accent-neon);
+  box-shadow: 0 0 10px var(--accent-glow), inset 0 0 10px var(--accent-glow);
+}
+
+.neon-btn {
+  background-color: transparent;
+  color: var(--accent-neon);
+  border: 1px solid var(--accent-neon);
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px var(--accent-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.neon-btn:hover {
+  background-color: var(--accent-neon);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px var(--accent-neon), 0 0 25px var(--accent-neon);
+}
+
+/* Navigation */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(234, 255, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-neon);
+  background-color: var(--bg-card);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo span.accent {
+  color: var(--accent-neon);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent-neon);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent-neon);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--accent-neon);
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* Layout Core */
+main {
+  padding: 2rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  flex: 1;
+  text-align: left;
+}
+
+.hero-image-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-profile-img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-neon);
+  object-fit: cover;
+  box-shadow: 0 0 20px var(--accent-glow), inset 0 0 20px var(--accent-glow);
+  background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+  background-size: cover;
+  background-position: center;
+  animation: pulseNeonGlow 3s infinite alternate;
+}
+
+@keyframes pulseNeonGlow {
+  0% {
+    box-shadow: 0 0 15px var(--accent-glow), inset 0 0 15px rgba(234, 255, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 35px rgba(234, 255, 0, 0.6), inset 0 0 35px var(--accent-glow);
+  }
+}
+
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-btn {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-btn:hover {
+  border-color: var(--accent-neon);
+  color: var(--accent-neon);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.section-title::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-neon);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-neon);
+}
+
+/* Story Cards Grid */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.story-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(234, 255, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(234, 255, 0, 0.1);
+}
+
+.story-image {
+  height: 200px;
+  background-color: #2a2a2a;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.story-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-tag {
+  font-size: 0.8rem;
+  color: var(--bg-primary);
+  background-color: var(--accent-neon);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+.story-title {
+  font-size: 1.3rem;
+  margin: 0 0 10px 0;
+  color: var(--text-primary);
+  font-family: var(--font-hindi), var(--font-main);
+  line-height: 1.4;
+}
+
+.story-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-hindi), var(--font-main);
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   CATEGORY-SPECIFIC FONT STYLES
+   Comic, Story, Drama, Series, Article alag fonts
+   ============================================================ */
+
+/* --- COMICS Category --- */
+.category-comics .story-card,
+.story-card[data-category="comics"] {
+  border-color: #ff6b35;
+  box-shadow: 3px 3px 0 #ff6b35, 6px 6px 0 rgba(255, 107, 53, 0.3);
+  transform: rotate(-0.3deg);
+}
+
+.category-comics .story-card:hover,
+.story-card[data-category="comics"]:hover {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 5px 5px 0 #ff6b35, 10px 10px 0 rgba(255, 107, 53, 0.4), 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.category-comics .story-title,
+.story-card[data-category="comics"] .story-title {
+  font-family: var(--font-comic) !important;
+  font-size: 1.6rem !important;
+  letter-spacing: 1.5px;
+  color: #ff6b35;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.category-comics .story-excerpt,
+.story-card[data-category="comics"] .story-excerpt {
+  font-family: var(--font-comic-body) !important;
+  font-size: 1rem !important;
+  font-style: italic;
+  color: #d4d4d4;
+}
+
+.category-comics .story-tag,
+.story-card[data-category="comics"] .story-tag {
+  background: #ff6b35 !important;
+  font-family: var(--font-comic) !important;
+  letter-spacing: 2px;
+  font-size: 0.9rem !important;
+}
+
+/* Comics Section Title */
+#comics .section-title {
+  font-family: var(--font-comic) !important;
+  font-size: 2.8rem !important;
+  letter-spacing: 3px;
+  color: #ff6b35;
+  text-shadow: 3px 3px 0 rgba(255, 107, 53, 0.4);
+}
+
+/* --- STORY Category --- */
+.story-card[data-category="story"] .story-title {
+  font-family: var(--font-story) !important;
+  font-style: italic;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.3px;
+}
+
+.story-card[data-category="story"] .story-excerpt {
+  font-family: var(--font-story) !important;
+  font-size: 0.97rem !important;
+  line-height: 1.7;
+}
+
+.story-card[data-category="story"] .story-tag {
+  background: #9b59b6 !important;
+}
+
+#recent .section-title {
+  font-family: var(--font-story);
+  font-style: italic;
+}
+
+/* --- DRAMA Category --- */
+.story-card[data-category="drama"] .story-title {
+  font-family: var(--font-story) !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  color: #e74c3c;
+  letter-spacing: 0.5px;
+}
+
+.story-card[data-category="drama"] .story-excerpt {
+  font-family: var(--font-hindi-elegant), var(--font-story) !important;
+  font-size: 1rem !important;
+  line-height: 1.8;
+}
+
+.story-card[data-category="drama"] .story-tag {
+  background: #c0392b !important;
+}
+
+.story-card[data-category="drama"] {
+  border-color: rgba(231, 76, 60, 0.3);
+}
+
+.story-card[data-category="drama"]:hover {
+  border-color: #e74c3c;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(231, 76, 60, 0.3);
+}
+
+#drama .section-title {
+  font-family: var(--font-story);
+  font-weight: 700;
+  color: #e74c3c;
+  text-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
+}
+
+/* --- SERIES Category --- */
+.story-card[data-category="series"] .story-title {
+  font-family: var(--font-series) !important;
+  font-weight: 700 !important;
+  font-size: 1.45rem !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #3498db;
+}
+
+.story-card[data-category="series"] .story-excerpt {
+  font-family: var(--font-hindi-bold), var(--font-series) !important;
+  font-size: 0.97rem !important;
+}
+
+.story-card[data-category="series"] .story-tag {
+  background: #2980b9 !important;
+  letter-spacing: 1.5px;
+}
+
+.story-card[data-category="series"] {
+  border-color: rgba(52, 152, 219, 0.25);
+}
+
+.story-card[data-category="series"]:hover {
+  border-color: #3498db;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(52, 152, 219, 0.3);
+}
+
+#series .section-title {
+  font-family: var(--font-series);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #3498db;
+  text-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
+}
+
+/* --- ARTICLE Category --- */
+.story-card[data-category="article"] .story-title {
+  font-family: var(--font-article) !important;
+  font-size: 1.2rem !important;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.story-card[data-category="article"] .story-excerpt {
+  font-family: var(--font-article) !important;
+  font-size: 0.92rem !important;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.story-card[data-category="article"] .story-tag {
+  background: #27ae60 !important;
+}
+
+.story-card[data-category="article"] {
+  border-color: rgba(39, 174, 96, 0.2);
+}
+
+.story-card[data-category="article"]:hover {
+  border-color: #27ae60;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(39, 174, 96, 0.2);
+}
+
+#articles .section-title {
+  font-family: var(--font-article);
+  font-style: italic;
+  color: #2ecc71;
+  text-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+}
+
+/* ============================================================
+   HINDI FONT UTILITY CLASSES
+   अलग-अलग contexts के लिए Hindi fonts
+   ============================================================ */
+
+/* Standard Hindi Text - Clean & Readable (Hind) */
+.hindi-text {
+  font-family: var(--font-hindi) !important;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* Elegant Hindi (Tiro Devanagari - लेखनी style) */
+.hindi-elegant {
+  font-family: var(--font-hindi-elegant) !important;
+  line-height: 2;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+}
+
+/* Bold Fun Hindi (Baloo 2 - titles ke liye) */
+.hindi-bold {
+  font-family: var(--font-hindi-bold) !important;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+/* Hero Section Hindi text */
+.hero-text h2,
+.hero-text p {
+  font-family: var(--font-hindi), var(--font-main);
+}
+
+.hero-text h2 {
+  font-family: var(--font-hindi-bold) !important;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* Logo Hindi text */
+.logo h1 {
+  font-family: var(--font-hindi-bold) !important;
+}
+
+.story-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* === Mobile Responsiveness === */
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 1rem 5%;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .auth-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  main {
+    padding: 1.5rem 5%;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    /* Force 1 column on small phones */
+    gap: 1.5rem;
+  }
+
+  .story-image {
+    height: 180px;
+  }
+
+  .story-content {
+    padding: 1.2rem;
+  }
+
+  .story-title {
+    font-size: 1.2rem;
+  }
+
+  #adminNav {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 1.4rem;
+  }
+
+  .logo-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .neon-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
